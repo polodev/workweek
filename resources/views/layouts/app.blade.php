@@ -11,13 +11,15 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" ></script>
+    <script src="{{ asset('js/datepicker.min.js') }}" ></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
+  <link rel="stylesheet" href="{{asset('css/datepicker.min.css')}}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -34,7 +36,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li><a href="{{route('works.create')}}" class="nav-link">Create</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -71,5 +73,6 @@
             @yield('content')
         </main>
     </div>
+    @yield('script')
 </body>
 </html>

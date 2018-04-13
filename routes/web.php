@@ -12,9 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return redirect(route('works.index'));
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function () {
+  Route::resource('works', 'WorkController');
+});

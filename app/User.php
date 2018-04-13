@@ -9,6 +9,10 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public function works () {
+        return $this->hasMany(Work::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
