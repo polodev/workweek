@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Work;
+use Session;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,7 @@ class WorkController extends Controller
      */
     public function create()
     {
-        //
+        return view('works.create');
     }
 
     /**
@@ -49,7 +50,19 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'topic' => 'required',
+            'hour' => 'required|numeric',
+            'created_at' => 'required'
+        ]);
+        Work::create([
+            'topic' => $request->topic,
+            'hour' => $request->hour,
+            'created_at' =>  \Carbon\Carbon::parse($request->created_at)->format('Y-m-d H:i:s'),
+            'user_id' => auth()->id()
+        ]);
+        Session::flash('message', 'Work added successfully');
+        return redirect()->back();
     }
 
     /**
@@ -71,7 +84,7 @@ class WorkController extends Controller
      */
     public function edit(Work $work)
     {
-        //
+        return view('works.edit', compact('work'));
     }
 
     /**
@@ -84,6 +97,17 @@ class WorkController extends Controller
     public function update(Request $request, Work $work)
     {
         //
+        $this->validate($request, [
+            'topic' => 'required',
+            'hour' => 'required|numeric',
+            'created_at' => 'required'
+        ]);
+        $work->topic = $request->topic;
+        $work->hour = $request->hour;
+        $work->created_at = $request->created_at;
+        $work->save();
+        Session::flash('message', 'Work updated successfully');
+        return redirect()->back();
     }
 
     /**
@@ -94,6 +118,7 @@ class WorkController extends Controller
      */
     public function destroy(Work $work)
     {
-        //
+        $work->delete();
+        return redirect()->back();
     }
 }

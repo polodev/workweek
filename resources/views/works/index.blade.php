@@ -41,7 +41,7 @@
                                 <td>
                                     {{$work->topic}}
                                     <a class="badge badge-info" style="cursor: pointer;" href="{{route('works.edit', $work->id)}}">edit</a>
-                                    <form method="post" class="d-inline-block" action="{{route('works.destroy', $work->id)}}">
+                                    <form onsubmit="return confirm('Are you sure you want to delete this entry?')" method="post" class="d-inline-block" action="{{route('works.destroy', $work->id)}}">
                                         @csrf
                                         @method('delete')
                                         <button style="outline: none; border: none; cursor: pointer;" class="badge badge-danger" type="sumit">Delete</button>
