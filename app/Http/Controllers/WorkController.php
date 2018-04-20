@@ -26,7 +26,7 @@ class WorkController extends Controller
         }
         $paginate = request('paginate') ?? 30;
         // return request('start');
-        $works = Work::filter(request(['topic', 'start', 'end']))->orderBy('created_at', 'desc')->paginate($paginate);
+        $works = Work::filter(request(['topic', 'start', 'end']))->where('user_id', auth()->id())->orderBy('created_at', 'desc')->paginate($paginate);
         $hour_array = $works->pluck('hour')->toArray();
         $total_hours = array_sum($hour_array);
         return view('works.index', compact('works', 'total_hours', 'start', 'end'));
