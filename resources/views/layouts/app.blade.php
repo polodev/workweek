@@ -37,6 +37,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li><a href="{{route('works.create')}}" class="nav-link">Create</a></li>
+                        <li><a href="{{route('achieve')}}" class="nav-link">Elon Musk</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -21,3 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
   Route::resource('works', 'WorkController');
 });
+Route::get('/achieve', function () {
+  return view('works.achieve');
+})->name('achieve');
